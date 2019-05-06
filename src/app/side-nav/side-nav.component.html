@@ -1,0 +1,10 @@
+<mat-sidenav-container
+    class="container" (backdropClick)="sidenav.close()">
+  <mat-sidenav #sidenav (keydown.escape)="sidenav.close()" disableClose>
+    <a (click)="sidenav.close()" class="logo"><img src="../../assets/ripofflogo.png" alt=""></a>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <a (click)="sidenav.open()" class="logo"><img src="../../assets/ripofflogo.png" alt=""></a>
+  </mat-sidenav-content>
+</mat-sidenav-container>

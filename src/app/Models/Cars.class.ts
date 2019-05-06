@@ -23,4 +23,13 @@ export class Car {
   available: boolean;
   plateNumber: string;
   branch: Branch[];
+
+  constructor(type: CarType, image: string, plateNum: string) {
+    this.type = type;
+    this.mileage = 0;
+    this.image = image;
+    this.fitForRental = true;
+    this.available = true;
+    this.plateNumber = plateNum;
+  }
 }

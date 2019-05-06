@@ -1,4 +1,5 @@
 export class User {
+  uid: number;
   fullName: string;
   idNumber: string;
   userName: string;
@@ -7,6 +8,14 @@ export class User {
   eMail: string;
   image?: string;
   permissions: Permissions;
+
+  constructor(fullname: string, idnum: string, username: string, gender: Gender, email: string) {
+    this.fullName = fullname;
+    this.idNumber = idnum;
+    this.userName = username;
+    this.gender = gender;
+    this.eMail = email;
+  }
 }
 
 export enum Gender {

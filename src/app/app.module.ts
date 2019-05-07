@@ -6,13 +6,18 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
-import { MatSidenavModule, MatButtonModule } from '@angular/material';
-import { SideNavComponent } from './side-nav/side-nav.component';
+import { MatSidenavModule, MatButtonModule, MatToolbarModule, MatIconModule, MatListModule } from '@angular/material';
+import { HomeComponent } from './home/home.component';
+import { MainNavComponent } from './main-nav/main-nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { CustomerPageComponent } from './customer-page/customer-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SideNavComponent
+    HomeComponent,
+    MainNavComponent,
+    CustomerPageComponent
   ],
   imports: [
     BrowserModule,
@@ -21,6 +26,10 @@ import { SideNavComponent } from './side-nav/side-nav.component';
     HttpClientModule,
     MatSidenavModule,
     MatButtonModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

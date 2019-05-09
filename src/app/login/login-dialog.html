@@ -1,0 +1,16 @@
+<h1 matDialogTitle>Log In</h1>
+
+<mat-dialog-content>
+  <mat-form-field>
+    <input matInput type="text" placeholder="User Name">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [type]="isMasked ? 'password' : 'text'" placeholder="Password">
+    <button mat-button matSuffix (click)="changeIcon()"><mat-icon>{{icon}}</mat-icon></button>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button matDialogClose>Cancel</button>
+  <button mat-button>Sign In</button>
+</mat-dialog-actions>

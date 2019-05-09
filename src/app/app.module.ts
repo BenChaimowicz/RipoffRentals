@@ -9,14 +9,16 @@ import { LayoutModule } from '@angular/cdk/layout';
 import {
   MatSidenavModule, MatButtonModule,
   MatToolbarModule, MatIconModule, MatListModule,
-  MatCardModule
+  MatCardModule, MatDialogModule, MatFormFieldModule,
+  MatInputModule
 } from '@angular/material';
 
 import { HomeComponent } from './home/home.component';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { CustomerPageComponent } from './customer-page/customer-page.component';
 import { ContactPageComponent } from './contact-page/contact-page.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent, LoginDialogComponent } from './login/login.component';
+import { PasswordfilterPipe } from './passwordfilter.pipe';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { LoginComponent } from './login/login.component';
     MainNavComponent,
     CustomerPageComponent,
     ContactPageComponent,
-    LoginComponent
+    LoginComponent,
+    LoginDialogComponent,
+    PasswordfilterPipe,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +44,11 @@ import { LoginComponent } from './login/login.component';
     MatIconModule,
     MatListModule,
     MatCardModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
+  entryComponents: [LoginDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

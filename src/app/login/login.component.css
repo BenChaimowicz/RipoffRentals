@@ -3,3 +3,7 @@
   flex-direction: row !important;
   width: 100%;
 }
+
+input {
+  margin-top: 5%;
+}

@@ -19,6 +19,7 @@ import { CustomerPageComponent } from './customer-page/customer-page.component';
 import { ContactPageComponent } from './contact-page/contact-page.component';
 import { LoginComponent, LoginDialogComponent } from './login/login.component';
 import { PasswordfilterPipe } from './passwordfilter.pipe';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { PasswordfilterPipe } from './passwordfilter.pipe';
     LoginComponent,
     LoginDialogComponent,
     PasswordfilterPipe,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

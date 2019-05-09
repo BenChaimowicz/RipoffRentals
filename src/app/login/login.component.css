@@ -6,4 +6,9 @@
 
 input {
   margin-top: 5%;
+  min-width: 244px;
+}
+
+.visiBtn {
+  justify-self: right;
 }

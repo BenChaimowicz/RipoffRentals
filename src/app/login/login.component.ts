@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
 // tslint:disable-next-line: no-use-before-declare
     const dialogRef = this.dialog.open(LoginDialogComponent, {
       maxWidth: '300px',
-      minHeight: '450px',
+      minHeight: '200px',
       data: {userName: this.userName, password: this.password }
     });
   }

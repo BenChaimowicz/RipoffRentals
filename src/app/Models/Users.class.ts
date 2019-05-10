@@ -1,3 +1,5 @@
+import { Rental } from './Rental.class';
+
 export class User {
   uid: number;
   fullName: string;
@@ -7,6 +9,7 @@ export class User {
   gender: Gender;
   eMail: string;
   image?: string;
+  rentals?: Rental[];
   permissions: Permissions;
 
   constructor(fullname: string, idnum: string, username: string, gender: Gender, email: string) {

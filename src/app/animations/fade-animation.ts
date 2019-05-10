@@ -8,14 +8,14 @@ export const fadeAnimation: AnimationTriggerMetadata =
 
             query(':enter',
                 [
-                    style({ opacity: 0 })
+                    style({ opacity: 0, position: 'absolute'})
                 ],
                 { optional: true }
             ),
 
             query(':leave',
                 [
-                    style({ opacity: 1 }),
+                    style({ opacity: 1, position: 'absolute'}),
                     animate('0.5s', style({ opacity: 0 }))
                 ],
                 { optional: true }
@@ -23,8 +23,8 @@ export const fadeAnimation: AnimationTriggerMetadata =
 
             query(':enter',
                 [
-                    style({ opacity: 0 }),
-                    animate('0.5s', style({ opacity: 1 }))
+                    style({ opacity: 0 , position: 'absolute'}),
+                    animate('0.5s', style({ opacity: 1}))
                 ],
                 { optional: true }
             )

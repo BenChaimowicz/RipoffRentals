@@ -23,6 +23,10 @@
   margin-top: 7%;
 }
 
+.bigger {
+  margin-top: 2%;
+}
+
 .content-container {
   display: flex;
   justify-content: center;

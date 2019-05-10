@@ -12,7 +12,7 @@ import { map } from 'rxjs/operators';
 })
 export class MainNavComponent {
 
-  isTablet$: Observable<boolean> = this.breakpointObserver.observe([Breakpoints.Handset, Breakpoints.Tablet, Breakpoints.WebPortrait])
+  isTablet$: Observable<boolean> = this.breakpointObserver.observe([Breakpoints.Handset, Breakpoints.TabletPortrait])
     .pipe(
       map(result => result.matches)
     );

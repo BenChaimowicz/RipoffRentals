@@ -33,7 +33,7 @@
         *ngIf="isTablet$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <a class="logo" routerLink='/home'><img class="logo" src="../../assets/ripofflogo.png" alt=""></a>
+      <a *ngIf="isTablet$ | async" class="logo" routerLink='/home'><img class="logo bigger" src="../../assets/ripofflogo.png" alt=""></a>
       <span class="spacer">Ripoff Rentals</span>
       <app-login class="farright"></app-login>
     </mat-toolbar>

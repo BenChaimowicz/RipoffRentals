@@ -1,7 +1,49 @@
-<form [formGroup]="newUserForm" (ngSubmit)="onSubmit()">
-  <mat-form-field>
-    <input formControlName="fullName" required
-    matInput type="text" placeholder="Full Name">
-  </mat-form-field>
+<mat-card class="mainController">
+  <mat-card-title>
+    <h1>Register new user</h1>
+  </mat-card-title>
+  <mat-card-subtitle>
+    <h4>Please carefully fill out the form</h4>
+  </mat-card-subtitle>
+  <mat-card-content>
+    <form [formGroup]="newUserForm" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <input formControlName="fullName" required matInput type="text" placeholder="Full Name">
+      </mat-form-field>
 
-</form>
+      <mat-form-field>
+        <input formControlName="idNumber" required matInput type="text" placeholder="ID Number">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input formControlName="email" required matInput type="text" placeholder="Email Address">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input formControlName="userName" required matInput type="text" placeholder="User Name">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select formControlName="gender" placeholder="Gender" required>
+          <mat-option *ngFor="let g of genderArray" [value]="g">
+            {{g}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input #pass formControlName="password" required
+        minlength="8"
+        matInput type="password" placeholder="Password">
+        <mat-hint align="start">Must be at least 8 non unique characters!</mat-hint>
+        <mat-hint align="end">{{pass.value.length}}</mat-hint>
+      </mat-form-field>
+      <mat-form-field>
+          <input formControlName="passwordVerify" required
+          minlength="8" pattern=pass
+          matInput type="password" placeholder="Password">
+          <mat-hint align="start">Must be the same as above!</mat-hint>
+        </mat-form-field>
+    </form>
+  </mat-card-content>
+</mat-card>

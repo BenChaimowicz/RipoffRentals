@@ -11,7 +11,7 @@ import {
   MatSidenavModule, MatButtonModule,
   MatToolbarModule, MatIconModule, MatListModule,
   MatCardModule, MatDialogModule, MatFormFieldModule,
-  MatInputModule, MatDatepickerModule,
+  MatInputModule, MatDatepickerModule, MatSelectModule
 } from '@angular/material';
 
 import { HomeComponent } from './Components/home/home.component';
@@ -51,7 +51,8 @@ import { PasswordfilterPipe } from './passwordfilter.pipe';
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatSelectModule,
   ],
   entryComponents: [LoginDialogComponent],
   providers: [],

@@ -4,23 +4,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { LayoutModule } from '@angular/cdk/layout';
 import {
   MatSidenavModule, MatButtonModule,
   MatToolbarModule, MatIconModule, MatListModule,
   MatCardModule, MatDialogModule, MatFormFieldModule,
-  MatInputModule
+  MatInputModule, MatDatepickerModule,
 } from '@angular/material';
 
-import { HomeComponent } from './home/home.component';
-import { MainNavComponent } from './main-nav/main-nav.component';
-import { CustomerPageComponent } from './customer-page/customer-page.component';
-import { ContactPageComponent } from './contact-page/contact-page.component';
-import { LoginComponent, LoginDialogComponent } from './login/login.component';
-import { PasswordfilterPipe } from './passwordfilter.pipe';
-import { RegisterComponent } from './register/register.component';
+import { HomeComponent } from './Components/home/home.component';
+import { MainNavComponent } from './Components/main-nav/main-nav.component';
+import { CustomerPageComponent } from './Components/customer-page/customer-page.component';
+import { ContactPageComponent } from './Components/contact-page/contact-page.component';
+import { LoginComponent, LoginDialogComponent } from './Components/login/login.component';
+import { RegisterComponent } from './Components/register/register.component';
 
+import { PasswordfilterPipe } from './passwordfilter.pipe';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { RegisterComponent } from './register/register.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    ReactiveFormsModule,
     MatSidenavModule,
     MatButtonModule,
     LayoutModule,
@@ -48,7 +50,8 @@ import { RegisterComponent } from './register/register.component';
     MatCardModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatDatepickerModule
   ],
   entryComponents: [LoginDialogComponent],
   providers: [],

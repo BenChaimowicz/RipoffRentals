@@ -10,8 +10,11 @@ export class RegistrationValidators {
 
   static mustBeSameAs(control: AbstractControl): ValidationErrors {
     if ((control.get('passwordVerify').value) !== (control.get('password').value)) {
-      return { mustBeSameAs: true };
+      control.get('passwordVerify').setErrors({ passwordsDontMatch: true });
+      return { passwordsDontMatch: true };
     }
-    return null;
+    console.log(control.get('password').value + ' , ' + control.get('passwordVerify').value);
+    control.get('passwordVerify').setErrors(null);
+    return { passwordsDontMatch: null };
   }
 }

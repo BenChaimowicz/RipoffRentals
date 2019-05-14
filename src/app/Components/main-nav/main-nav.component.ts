@@ -19,7 +19,7 @@ export class MainNavComponent {
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 
-  public getRouterOutletState(outlet) {
+  public getRouterOutletState(outlet): boolean {
     return outlet.isActivated ? outlet.activatedRoute : '';
   }
 }

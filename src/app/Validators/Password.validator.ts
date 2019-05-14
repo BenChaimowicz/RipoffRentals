@@ -13,7 +13,6 @@ export class RegistrationValidators {
       control.get('passwordVerify').setErrors({ passwordsDontMatch: true });
       return { passwordsDontMatch: true };
     }
-    console.log(control.get('password').value + ' , ' + control.get('passwordVerify').value);
     control.get('passwordVerify').setErrors(null);
     return { passwordsDontMatch: null };
   }

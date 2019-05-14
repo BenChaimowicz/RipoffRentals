@@ -7,6 +7,7 @@ import {
   Validators
 } from '@angular/forms';
 import { Gender } from '../../Models/Users.class';
+import { RegistrationValidators } from '../../Validators/Password.validator';
 
 @Component({
   selector: 'app-register',
@@ -20,8 +21,10 @@ export class RegisterComponent implements OnInit {
     email: ['', [Validators.required, Validators.email]],
     userName: ['', Validators.required],
     gender: ['', Validators.required],
-    password: ['', Validators.required],
-    passwordVerify: ['', Validators.required],
+    passwords: this.fb.group({
+      password: ['', [Validators.required, RegistrationValidators.cannotContainSpace]],
+      passwordVerify: ['', [Validators.required]],
+    }, {validators: [RegistrationValidators.mustBeSameAs]}),
     optional: this.fb.group({
       dateOfBirth: [''],
       image: ['']

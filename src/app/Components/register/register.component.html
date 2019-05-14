@@ -8,20 +8,12 @@
   <mat-card-content>
     <form [formGroup]="newUserForm" (ngSubmit)="onSubmit()">
       <mat-form-field>
-        <input formControlName="fullName"
-        required matInput
-        type="text"
-        placeholder="Full Name"
-        maxlength="50">
+        <input formControlName="fullName" required matInput type="text" placeholder="Full Name" maxlength="50">
       </mat-form-field>
 
       <mat-form-field>
-        <input
-        formControlName="idNumber"
-        required matInput type="text"
-        placeholder="ID Number"
-        minlength="9"
-        maxlength="9">
+        <input formControlName="idNumber" required matInput type="text" placeholder="ID Number" minlength="9"
+          maxlength="9">
       </mat-form-field>
 
       <mat-form-field>
@@ -39,20 +31,19 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-
-      <mat-form-field>
-        <input #pass formControlName="password" required
-        minlength="8"
-        matInput type="password" placeholder="Password">
-        <mat-hint align="start">Must be at least 8 non unique characters!</mat-hint>
-        <mat-hint align="end">{{pass.value.length}}</mat-hint>
-      </mat-form-field>
-      <mat-form-field>
-          <input formControlName="passwordVerify" required
-          minlength="8" pattern=pass
-          matInput type="password" placeholder="Password">
-          <mat-hint align="start">Must be the same as above!</mat-hint>
+      <div formGroupName="passwords" class="insideForm">
+        <mat-form-field>
+          <input #pass formControlName="password" required minlength="8" matInput type="password"
+            placeholder="Password">
+          <mat-hint align="start">Must be at least 8 non unique characters!</mat-hint>
+          <mat-hint align="end">{{pass.value.length}}</mat-hint>
         </mat-form-field>
+        <mat-form-field>
+          <input formControlName="passwordVerify" required minlength="8" pattern=pass matInput type="password"
+            placeholder="Confirm Password">
+          <mat-hint align="start">Must be the same!</mat-hint>
+        </mat-form-field>
+      </div>
     </form>
   </mat-card-content>
 </mat-card>

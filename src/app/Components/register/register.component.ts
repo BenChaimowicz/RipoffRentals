@@ -16,8 +16,8 @@ import { Gender } from '../../Models/Users.class';
 export class RegisterComponent implements OnInit {
   newUserForm = this.fb.group({
     fullName: ['', Validators.required],
-    idNumber: ['', Validators.required],
-    email: ['', Validators.required],
+    idNumber: ['', [Validators.minLength(9), Validators.maxLength(9), Validators.required]],
+    email: ['', [Validators.required, Validators.email]],
     userName: ['', Validators.required],
     gender: ['', Validators.required],
     password: ['', Validators.required],

@@ -8,11 +8,20 @@
   <mat-card-content>
     <form [formGroup]="newUserForm" (ngSubmit)="onSubmit()">
       <mat-form-field>
-        <input formControlName="fullName" required matInput type="text" placeholder="Full Name">
+        <input formControlName="fullName"
+        required matInput
+        type="text"
+        placeholder="Full Name"
+        maxlength="50">
       </mat-form-field>
 
       <mat-form-field>
-        <input formControlName="idNumber" required matInput type="text" placeholder="ID Number">
+        <input
+        formControlName="idNumber"
+        required matInput type="text"
+        placeholder="ID Number"
+        minlength="9"
+        maxlength="9">
       </mat-form-field>
 
       <mat-form-field>

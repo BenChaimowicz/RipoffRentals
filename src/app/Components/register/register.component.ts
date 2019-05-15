@@ -13,6 +13,7 @@ import {
 } from '@angular/forms';
 import { Gender } from '../../Models/Users.class';
 import { RegistrationValidators } from '../../Validators/Registration.validator';
+import { FileValidator } from 'ngx-material-file-input';
 
 @Component({
   selector: 'app-register',
@@ -20,6 +21,9 @@ import { RegistrationValidators } from '../../Validators/Registration.validator'
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+
+  maxFileSize = 1000000;
+
   newUserForm = this.fb.group({
     fullName: ['', [
       Validators.required,
@@ -39,7 +43,7 @@ export class RegisterComponent implements OnInit {
     }, {validators: [RegistrationValidators.mustBeSameAs]}),
     optional: this.fb.group({
       dateOfBirth: [new Date(), [RegistrationValidators.overEighteen]],
-      image: ['']
+      image: ['', [FileValidator.maxContentSize(this.maxFileSize)]]
     })
   });
 

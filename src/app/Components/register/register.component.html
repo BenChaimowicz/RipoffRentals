@@ -59,6 +59,7 @@
           <button mat-icon-button matSuffix *ngIf="!fileInput.empty" (click)="fileInput.clear($event)">
             <mat-icon>clear</mat-icon>
           </button>
+          <mat-error *ngIf="newUserForm.get('optional').get('image').hasError('maxContentSize')">File size must be less than {{this.maxFileSize}}</mat-error>
         </mat-form-field>
       </div>
     </form>

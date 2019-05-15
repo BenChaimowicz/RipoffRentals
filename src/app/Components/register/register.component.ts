@@ -22,7 +22,7 @@ import { FileValidator } from 'ngx-material-file-input';
 })
 export class RegisterComponent implements OnInit {
 
-  maxFileSize = 1000000;
+  maxFileSize = 1048576;
 
   newUserForm = this.fb.group({
     fullName: ['', [

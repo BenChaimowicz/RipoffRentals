@@ -11,3 +11,9 @@ form {
   display: flex;
   justify-content: space-between;
 }
+
+.optional {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8%;
+}

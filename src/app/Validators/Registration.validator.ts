@@ -1,6 +1,10 @@
 import { AbstractControl, ValidationErrors } from '@angular/forms';
 
 export class RegistrationValidators {
+  static fullNamePattern = '^([a-zA-Z]+|[a-zA-Z]+\\s{1}[a-zA-Z]{1,}|[a-zA-Z]+\\s{1}[a-zA-Z]{3,}\\s{1}[a-zA-Z]{1,})$';
+  static numbersOnlyPattern = '[0-9]*';
+  static userNamePattern = '^[a-z0-9_-]{3,20}$';
+
   static cannotContainSpace(control: AbstractControl): ValidationErrors {
     if ((control.value as string).indexOf(' ') >= 0) {
       return { cannotContainSpace: true };
@@ -17,14 +21,20 @@ export class RegistrationValidators {
     return { passwordsDontMatch: null };
   }
 
-  static onlyNumbers(control: AbstractControl): ValidationErrors {
-    const regex = new RegExp('/^[0-9]+$/');
-    if (!regex.test(control.value as string)) {
-      console.log('no');
-      return { invalidCharacters: true };
+  static overEighteen(control: AbstractControl): ValidationErrors {
+    const inputData = Date.parse(control.value);
+    if (isNaN(inputData) === true) {
+      return { invalidDateFormat: true };
     }
-    console.log('yes');
-    control.setErrors(null);
+    const dob: Date = control.value;
+    const today: Date = new Date();
+    const diff: number = today.getFullYear() - dob.getFullYear();
+
+    if (diff < 18) {
+      console.log(diff);
+      return { minimumAge: 18 };
+    }
+    console.log(diff);
     return null;
   }
 }

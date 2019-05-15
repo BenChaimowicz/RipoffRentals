@@ -44,6 +44,13 @@
           <mat-hint align="start">Must be the same as the password!</mat-hint>
         </mat-form-field>
       </div>
+      <div formGroupName="optional" class="optional">
+        <mat-form-field>
+          <input formControlName="dateOfBirth" matInput [matDatepicker]="picker" placeholder="Birth Date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
     </form>
   </mat-card-content>
 </mat-card>

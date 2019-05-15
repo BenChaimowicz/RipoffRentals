@@ -6,6 +6,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { MaterialFileInputModule } from 'ngx-material-file-input';
+
 import { LayoutModule } from '@angular/cdk/layout';
 import {
   MatSidenavModule, MatButtonModule,
@@ -54,7 +56,8 @@ import { PasswordfilterPipe } from './passwordfilter.pipe';
     MatInputModule,
     MatDatepickerModule,
     MatSelectModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MaterialFileInputModule,
   ],
   entryComponents: [LoginDialogComponent],
   providers: [MatDatepickerModule],

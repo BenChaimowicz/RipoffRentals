@@ -17,3 +17,7 @@ form {
   flex-direction: column;
   margin-top: 8%;
 }
+
+.clickable {
+  cursor: pointer;
+}

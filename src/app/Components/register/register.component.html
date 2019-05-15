@@ -50,6 +50,16 @@
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
+        <mat-form-field>
+          <ngx-mat-file-input #fileInput formControlName="image"
+          placeholder="User Image (Optional, JPG only!)"
+          valuePlaceholder="Optional jpg image"
+          [accept]="'.jpg'">
+          </ngx-mat-file-input>
+          <button mat-icon-button matSuffix *ngIf="!fileInput.empty" (click)="fileInput.clear($event)">
+            <mat-icon>clear</mat-icon>
+          </button>
+        </mat-form-field>
       </div>
     </form>
   </mat-card-content>

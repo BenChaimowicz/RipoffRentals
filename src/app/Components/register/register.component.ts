@@ -7,7 +7,7 @@ import {
   Validators
 } from '@angular/forms';
 import { Gender } from '../../Models/Users.class';
-import { RegistrationValidators } from '../../Validators/Password.validator';
+import { RegistrationValidators } from '../../Validators/Registration.validator';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +17,10 @@ import { RegistrationValidators } from '../../Validators/Password.validator';
 export class RegisterComponent implements OnInit {
   newUserForm = this.fb.group({
     fullName: ['', Validators.required],
-    idNumber: ['', [Validators.minLength(9), Validators.maxLength(9), Validators.required]],
+    idNumber: ['', [
+      Validators.minLength(9),
+      Validators.maxLength(9),
+      Validators.required]],
     email: ['', [Validators.required, Validators.email]],
     userName: ['', Validators.required],
     gender: ['', Validators.required],

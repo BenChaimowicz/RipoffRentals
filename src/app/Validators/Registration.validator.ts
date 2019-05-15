@@ -16,4 +16,15 @@ export class RegistrationValidators {
     control.get('passwordVerify').setErrors(null);
     return { passwordsDontMatch: null };
   }
+
+  static onlyNumbers(control: AbstractControl): ValidationErrors {
+    const regex = new RegExp('/^[0-9]+$/');
+    if (!regex.test(control.value as string)) {
+      console.log('no');
+      return { invalidCharacters: true };
+    }
+    console.log('yes');
+    control.setErrors(null);
+    return null;
+  }
 }

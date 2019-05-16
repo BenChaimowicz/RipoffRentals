@@ -62,6 +62,7 @@
           <mat-error *ngIf="newUserForm.get('optional').get('image').hasError('maxContentSize')">File size must be less than {{this.maxFileSize| byteFormat}}</mat-error>
         </mat-form-field>
       </div>
+        <button mat-raised-button class="regBtn" type="submit" color="primary">Register</button>
     </form>
   </mat-card-content>
 </mat-card>

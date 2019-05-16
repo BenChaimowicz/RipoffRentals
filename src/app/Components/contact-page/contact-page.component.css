@@ -1,0 +1,17 @@
+.mainContainer {
+  display: flex;
+}
+
+.mat-card {
+  min-width: 320px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.end {
+  max-width: 50%;
+  align-self: flex-end;
+}

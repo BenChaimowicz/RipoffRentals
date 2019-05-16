@@ -55,7 +55,9 @@ export class RegisterComponent implements OnInit {
     this.populateGender();
   }
 
-  onSubmit() {}
+  onSubmit() {
+    console.log(this.newUserForm);
+  }
 
   populateGender() {
 

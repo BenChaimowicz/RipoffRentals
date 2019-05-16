@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 
@@ -25,6 +25,7 @@ import { LoginComponent, LoginDialogComponent } from './Components/login/login.c
 import { RegisterComponent } from './Components/register/register.component';
 
 import { PasswordfilterPipe } from './passwordfilter.pipe';
+import { AdminpageComponent } from './Components/adminpage/adminpage.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { PasswordfilterPipe } from './passwordfilter.pipe';
     LoginDialogComponent,
     PasswordfilterPipe,
     RegisterComponent,
+    AdminpageComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +46,7 @@ import { PasswordfilterPipe } from './passwordfilter.pipe';
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     MatSidenavModule,
     MatButtonModule,
     LayoutModule,

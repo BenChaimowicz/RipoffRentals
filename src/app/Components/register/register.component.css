@@ -21,3 +21,7 @@ form {
 .clickable {
   cursor: pointer;
 }
+
+.regBtn {
+  align-self: flex-end;
+}

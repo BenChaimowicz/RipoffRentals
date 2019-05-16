@@ -1,0 +1,27 @@
+<div class="mainContainer">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <h1>Browse cars</h1>
+      </mat-card-title>
+      <mat-card-subtitle>
+        <mat-form-field class="searchLine">
+        <input matInput type="text" (keyup)="applyFilter($event.target.value)" placeholder="Search...">
+      </mat-form-field>
+      <mat-form-field class="criteria">
+        <mat-label>Search by</mat-label>
+        <mat-select>
+          <mat-option
+          *ngFor="let criteria of searchCriteria; index as i"
+          [value]="searchCriteria[i]">
+            {{criteria}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -14,7 +14,7 @@ import {
   MatToolbarModule, MatIconModule, MatListModule,
   MatCardModule, MatDialogModule, MatFormFieldModule,
   MatInputModule, MatDatepickerModule, MatSelectModule,
-  MatNativeDateModule
+  MatNativeDateModule, MatTableModule
 } from '@angular/material';
 
 import { HomeComponent } from './Components/home/home.component';
@@ -61,6 +61,7 @@ import { AdminpageComponent } from './Components/adminpage/adminpage.component';
     MatSelectModule,
     MatNativeDateModule,
     MaterialFileInputModule,
+    MatTableModule
   ],
   entryComponents: [LoginDialogComponent],
   providers: [MatDatepickerModule],

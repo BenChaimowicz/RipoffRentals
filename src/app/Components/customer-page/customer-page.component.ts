@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-customer-page',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomerPageComponent implements OnInit {
 
+  searchCriteria: string[] = [
+    'All',
+    'Manufacturer',
+    'Model',
+    'Year',
+    'Transmission',
+    'Availability'
+  ];
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  applyFilter(s: string) {
+
+  }
 }

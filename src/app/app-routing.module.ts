@@ -1,3 +1,4 @@
+import { AdminpageComponent } from './Components/adminpage/adminpage.component';
 import { ContactPageComponent } from './Components/contact-page/contact-page.component';
 import { CustomerPageComponent } from './Components/customer-page/customer-page.component';
 import { HomeComponent } from './Components/home/home.component';
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'customer', component: CustomerPageComponent },
   { path: 'contact', component: ContactPageComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'admin', component: AdminpageComponent },
 
 ];
 

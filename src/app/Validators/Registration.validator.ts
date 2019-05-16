@@ -31,10 +31,8 @@ export class RegistrationValidators {
     const diff: number = today.getFullYear() - dob.getFullYear();
 
     if (diff < 18) {
-      console.log(diff);
       return { minimumAge: 18 };
     }
-    console.log(diff);
     return null;
   }
 }

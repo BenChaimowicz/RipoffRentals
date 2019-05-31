@@ -1,4 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { LoginService } from './../../services/login.service';
+import { RegistrationValidators } from './../../Validators/Registration.validator';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
 import {
   MatButton,
   MatDialog,
@@ -47,12 +50,21 @@ export class LoginComponent implements OnInit {
 })
 export class LoginDialogComponent {
 
+  @Output() loggedIn = new EventEmitter();
+
   icon = 'visibility';
   isMasked = true;
+  signInForm = new FormGroup({
+    userName: new FormControl('', [Validators.required, Validators.pattern(RegistrationValidators.userNamePattern)]),
+    password: new FormControl('', Validators.required)
+  });
+
 
   constructor(
     public dialogRef: MatDialogRef<LoginDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+    @Inject(MAT_DIALOG_DATA) public data: DialogData, private loginService: LoginService) {
+
+    }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -63,4 +75,14 @@ export class LoginDialogComponent {
     this.isMasked = this.icon === 'visibility' ? true : false;
   }
 
+  async onSignIn() {
+    let loggedIn: boolean;
+    let validTry: boolean;
+    if (this.signInForm.valid) {
+      validTry = await this.loginService.loginUser(this.signInForm.value.userName, this.signInForm.value.password);
+    }
+    if (validTry) {
+
+    }
+  }
 }

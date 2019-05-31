@@ -1,16 +1,17 @@
 <h1 matDialogTitle>Log In</h1>
 
 <mat-dialog-content>
+  <form [formGroup]="signInForm">
   <mat-form-field color="accent">
-    <input matInput type="text" placeholder="User Name">
+    <input matInput formControlName="userName" type="text" placeholder="User Name">
   </mat-form-field>
   <mat-form-field color="accent">
-    <input matInput [type]="isMasked ? 'password' : 'text'" placeholder="Password">
+    <input matInput formControlName="password" [type]="isMasked ? 'password' : 'text'" placeholder="Password">
   </mat-form-field>
   <button mat-button class="visiBtn" (click)="changeIcon()"><mat-icon>{{icon}}</mat-icon></button>
-
+</form>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-raised-button matDialogClose color="primary">Cancel</button>
-  <button mat-raised-button color="primary">Sign In</button>
+  <button mat-raised-button color="primary" (click)="onSignIn()">Sign In</button>
 </mat-dialog-actions>

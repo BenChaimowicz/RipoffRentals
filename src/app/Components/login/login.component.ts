@@ -76,13 +76,13 @@ export class LoginDialogComponent {
   }
 
   async onSignIn() {
-    let loggedIn: boolean;
     let validTry: boolean;
     if (this.signInForm.valid) {
       validTry = await this.loginService.loginUser(this.signInForm.value.userName, this.signInForm.value.password);
     }
     if (validTry) {
-
+      this.loggedIn.emit();
+      this.dialogRef.close();
     }
   }
 }

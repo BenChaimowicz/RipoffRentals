@@ -1,5 +1,6 @@
 import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { async } from '@angular/core/testing';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,14 @@ export class LoginService {
     localStorage.setItem('token', token);
   }
 
+  private getFromLocalStorage() {
+    const authToken = {
+      username: localStorage.getItem('username'),
+      token: localStorage.getItem('token')
+    };
+    return authToken;
+  }
+
   loginUser = async (username: string, password: string): Promise<boolean> => {
     try {
       const token = await this.getToken(username, password);
@@ -35,4 +44,5 @@ export class LoginService {
       return false;
     }
   }
+
 }

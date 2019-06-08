@@ -45,4 +45,11 @@ export class LoginService {
     }
   }
 
+  logOut() {
+    localStorage.removeItem('username');
+    localStorage.removeItem('token');
+  }
+
+  loginWithToken = async () => {
+  }
 }

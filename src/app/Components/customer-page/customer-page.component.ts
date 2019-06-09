@@ -1,11 +1,15 @@
 import { CarsService } from './../../services/cars.service';
 import { Car } from './../../Models/Cars.class';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-customer-page',
+// tslint:disable-next-line: use-host-property-decorator
+  host: {
+    class: 'bigComponent'
+  },
   templateUrl: './customer-page.component.html',
   styleUrls: ['./customer-page.component.css'],
   animations: [
@@ -17,7 +21,6 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   ],
 })
 export class CustomerPageComponent implements OnInit {
-
   searchCriteria: string[] = [
     'All',
     'Manufacturer',
@@ -28,10 +31,10 @@ export class CustomerPageComponent implements OnInit {
   ];
 
   carData: Car[] = [];
-  dataSource: MatTableDataSource<Car[]>;
-  columnsToDisplay = ['Manufacturer', 'Model + Year', 'Image'];
+  dataSource: MatTableDataSource<Car>;
+  columnsToDisplay = ['Image', 'Manufacturer', 'Model + Year' ];
   expandedElement: Car | null;
-  isLoading: boolean;
+  isLoading = true;
 
   constructor(private carService: CarsService) { }
 
@@ -47,6 +50,12 @@ export class CustomerPageComponent implements OnInit {
     this.carService.getCars().subscribe((data: Car[]) => {
       this.isLoading = true;
       this.carData = data;
+    }, (error: Error) => {
+        console.log(error.message);
+      }, () => {
+        this.dataSource = new MatTableDataSource<Car>(this.carData);
+        console.log(this.dataSource);
+        this.isLoading = false;
     });
   }
 }

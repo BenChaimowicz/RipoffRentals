@@ -8,7 +8,7 @@ import { Car } from '../Models/Cars.class';
 })
 export class CarsService {
 
-  url = window.location.origin + '/api/cars';
+  url = 'http://localhost:57182/api/cars';
 
   constructor(private http: HttpClient) { }
 

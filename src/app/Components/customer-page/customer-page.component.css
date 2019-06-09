@@ -1,6 +1,15 @@
+.mainContainer {
+  width:100%;
+}
+
 .searchLine {
   width: 70%;
 }
+
 .criteria {
   width: 30%;
+}
+
+table {
+  width: 100%;
 }

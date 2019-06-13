@@ -7,13 +7,25 @@ export class CarType {
   modelYear: string;
   dailyCost: number;
   dailyLateCost: number;
-  transmission: Transmission;
-}
+  transmission: string;
 
-export enum Transmission {
-  'Manual' = 0,
-  'Automatic' = 1,
-  'Robotic' = 2
+  constructor(
+    i: number,
+    manu: string,
+    mod: string,
+    modyear: string,
+    dcost: number,
+    latecost: number,
+    transmission: string
+  ) {
+    this.index = i;
+    this.manufacturer = manu;
+    this.model = mod;
+    this.modelYear = modyear;
+    this.dailyCost = dcost;
+    this.dailyLateCost = latecost;
+    this.transmission = transmission;
+  }
 }
 
 export class Car {
@@ -26,12 +38,22 @@ export class Car {
   plateNumber: string;
   branch: Branch;
 
-  constructor(type: CarType, image: string, plateNum: string) {
+  constructor(
+    id: number,
+    type: CarType,
+    miles: number,
+    image: string,
+    fit: boolean,
+    available: boolean,
+    plateNum: string,
+    branch: number
+  ) {
+    this.index = id;
     this.type = type;
-    this.mileage = 0;
+    this.mileage = miles;
     this.image = image;
-    this.fitForRental = true;
-    this.available = true;
+    this.fitForRental = fit;
+    this.available = available;
     this.plateNumber = plateNum;
   }
 }

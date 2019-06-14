@@ -23,12 +23,9 @@ export class CarsService {
     let rawCars: RawCar[] = [];
 
     rawCars = await this.getRawCars().toPromise();
-    console.log(rawCars);
     for (let rc of rawCars) {
-      console.log(rc);
       branch = await this.branchService.getBranchById(rc.Branch).toPromise();
       cartype = await this.getCarTypeByIndex(rc.CarTypeIndex).toPromise();
-      console.log('branch: ' + branch, 'type: ' + cartype);
       this.cars.push(new Car(rc.Index, cartype, rc.Mileage, rc.Image, rc.Fit, rc.Available, rc.Platenumber, branch));
     }
     return this.cars;

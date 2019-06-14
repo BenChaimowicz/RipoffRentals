@@ -39,6 +39,7 @@ export class CustomerPageComponent implements OnInit {
   constructor(private carService: CarsService) { }
 
   ngOnInit() {
+    this.isLoading = true;
     this.populateTable();
   }
 
@@ -51,6 +52,7 @@ export class CustomerPageComponent implements OnInit {
     this.carData = await this.carService.getCars();
     this.dataSource = new MatTableDataSource<Car>(this.carData);
     console.log(this.dataSource);
+    this.isLoading = false;
 
     // this.carService.getCars().subscribe((data: Car[]) => {
     //   this.isLoading = true;

@@ -47,15 +47,20 @@ export class CustomerPageComponent implements OnInit {
   }
 
   async populateTable() {
-    this.carService.getCars().subscribe((data: Car[]) => {
-      this.isLoading = true;
-      this.carData = data;
-    }, (error: Error) => {
-        console.log(error.message);
-      }, () => {
-        this.dataSource = new MatTableDataSource<Car>(this.carData);
-        console.log(this.dataSource);
-        this.isLoading = false;
-    });
+
+    this.carData = await this.carService.getCars();
+    this.dataSource = new MatTableDataSource<Car>(this.carData);
+    console.log(this.dataSource);
+
+    // this.carService.getCars().subscribe((data: Car[]) => {
+    //   this.isLoading = true;
+    //   this.carData = data;
+    // }, (error: Error) => {
+    //     console.log(error.message);
+    //   }, () => {
+    //     this.dataSource = new MatTableDataSource<Car>(this.carData);
+    //     console.log(this.dataSource);
+    //     this.isLoading = false;
+    // });
   }
 }

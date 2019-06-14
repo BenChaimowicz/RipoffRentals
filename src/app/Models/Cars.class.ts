@@ -46,7 +46,7 @@ export class Car {
     fit: boolean,
     available: boolean,
     plateNum: string,
-    branch: number
+    branch: Branch
   ) {
     this.index = id;
     this.type = type;
@@ -55,5 +55,6 @@ export class Car {
     this.fitForRental = fit;
     this.available = available;
     this.plateNumber = plateNum;
+    this.branch = branch;
   }
 }

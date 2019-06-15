@@ -1,3 +1,4 @@
+import { AuthGuard } from './services/auth.guard';
 import { AdminpageComponent } from './Components/adminpage/adminpage.component';
 import { ContactPageComponent } from './Components/contact-page/contact-page.component';
 import { CustomerPageComponent } from './Components/customer-page/customer-page.component';
@@ -5,6 +6,7 @@ import { HomeComponent } from './Components/home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RegisterComponent } from './Components/register/register.component';
+import { RoleGuard } from './services/role.guard.service';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -12,7 +14,7 @@ const routes: Routes = [
   { path: 'customer', component: CustomerPageComponent },
   { path: 'contact', component: ContactPageComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'admin', component: AdminpageComponent },
+  { path: 'admin', component: AdminpageComponent, canActivate: [RoleGuard], data: {expectedRole: 'Admin'} },
 
 ];
 

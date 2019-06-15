@@ -1,4 +1,8 @@
 <div class="flexible">
   <button mat-button routerLink='/register'>Register</button>
-  <button mat-button (click)="openDialog()">Sign In</button>
+  <button mat-button *ngIf="!loggedIn" (click)="openDialog()">Sign In</button>
+  <div *ngIf="loggedIn">
+    <span>Hello {{fullName}}</span>
+    <button mat-button (click)="onLogOut()">Log Out</button>
+  </div>
 </div>

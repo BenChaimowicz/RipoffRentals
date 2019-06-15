@@ -3,6 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { fadeAnimation } from '../../animations/fade-animation';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-main-nav',
@@ -18,9 +19,11 @@ export class MainNavComponent {
     Breakpoints.WebPortrait])
     .pipe(
       map(result => result.matches)
-    );
+  );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  loggedIn: boolean;
+
+  constructor(private breakpointObserver: BreakpointObserver, private loginService: LoginService) {}
 
   public getRouterOutletState(outlet): boolean {
     return outlet.isActivated ? outlet.activatedRoute : '';

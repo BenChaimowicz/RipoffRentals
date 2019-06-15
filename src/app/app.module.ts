@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { MaterialFileInputModule } from 'ngx-material-file-input';
@@ -26,6 +26,7 @@ import { RegisterComponent } from './Components/register/register.component';
 
 import { PasswordfilterPipe } from './passwordfilter.pipe';
 import { AdminpageComponent } from './Components/adminpage/adminpage.component';
+import { JwtInterceptor } from './services/interceptor.service';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { AdminpageComponent } from './Components/adminpage/adminpage.component';
     MatTableModule
   ],
   entryComponents: [LoginDialogComponent],
-  providers: [MatDatepickerModule],
+  providers: [MatDatepickerModule,
+  {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,7 +1,7 @@
 import { LoginService } from './../../services/login.service';
 import { RegistrationValidators } from './../../Validators/Registration.validator';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Inject, Output, EventEmitter, Input } from '@angular/core';
 import {
   MatButton,
   MatDialog,
@@ -25,10 +25,11 @@ export interface DialogData {
 export class LoginComponent implements OnInit {
 
   loggedIn = false;
+  fullName: string;
   userName: string;
   password: string;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private loginService: LoginService) { }
 
   ngOnInit() {
   }
@@ -40,6 +41,11 @@ export class LoginComponent implements OnInit {
       minHeight: '200px',
       data: {userName: this.userName, password: this.password }
     });
+  }
+
+  onLogOut() {
+    this.loginService.logOut();
+    this.loggedIn = false;
   }
 }
 
@@ -81,7 +87,7 @@ export class LoginDialogComponent {
       validTry = await this.loginService.loginUser(this.signInForm.value.userName, this.signInForm.value.password);
     }
     if (validTry) {
-      this.loggedIn.emit();
+      this.loggedIn.emit(validTry);
       this.dialogRef.close();
     }
   }

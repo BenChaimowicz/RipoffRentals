@@ -41,13 +41,13 @@
 </ng-container>
 
  <ng-container matColumnDef="expandedDetail">
-   <td mat-cell *matCellDef="let car">
+   <td mat-cell *matCellDef="let car" [attr.colspan]="columnsToDisplay.length">
      <div class="car-detail"
           [@detailExpand]="car == expandedCar ? 'expanded' : 'collapsed'">
        <div class="extra-detail">
          <div>
-         <h3>Daily Cost : {{car.type.DailyCost}} ILS</h3>
-         <h3>Transmission: {{car.type.Transmission}}</h3>
+            <div><h3>Daily Cost:</h3>{{car.type.DailyCost}} ILS</div>
+            <div><h3>Transmission:</h3> {{car.type.Transmission}}</div>
         </div>
         <button mat-button color="accent" class="mat-elevation-z10 orderBtn">Order</button>
        </div>

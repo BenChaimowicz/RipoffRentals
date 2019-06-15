@@ -33,7 +33,7 @@ export class CustomerPageComponent implements OnInit {
   carData: Car[] = [];
   dataSource: MatTableDataSource<Car>;
   columnsToDisplay = ['Image', 'Manufacturer', 'Model and Year' ];
-  expandedElement: Car | null;
+  expandedCar: Car | null;
   isLoading = true;
 
   constructor(private carService: CarsService) { }

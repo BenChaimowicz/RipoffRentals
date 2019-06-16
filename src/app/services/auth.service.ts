@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { User } from '../Models/Users.class';
 
 @Injectable({
@@ -11,7 +11,7 @@ export class AuthService {
   url = 'http://localhost:57182/api/auth';
 
   constructor(private http: HttpClient) {
-   }
+  }
 
   isAuthenticated(): boolean {
     let isValid: boolean;

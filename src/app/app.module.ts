@@ -14,7 +14,7 @@ import {
   MatToolbarModule, MatIconModule, MatListModule,
   MatCardModule, MatDialogModule, MatFormFieldModule,
   MatInputModule, MatDatepickerModule, MatSelectModule,
-  MatNativeDateModule, MatTableModule
+  MatNativeDateModule, MatTableModule, MatSnackBarModule
 } from '@angular/material';
 
 import { HomeComponent } from './Components/home/home.component';
@@ -62,7 +62,8 @@ import { JwtInterceptor } from './services/interceptor.service';
     MatSelectModule,
     MatNativeDateModule,
     MaterialFileInputModule,
-    MatTableModule
+    MatTableModule,
+    MatSnackBarModule
   ],
   entryComponents: [LoginDialogComponent],
   providers: [MatDatepickerModule,

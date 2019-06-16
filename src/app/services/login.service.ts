@@ -1,16 +1,20 @@
+import { AlertService } from './alert.service';
 import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { async } from '@angular/core/testing';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { User } from '../Models/Users.class';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
+  userLoggedIn: Subject<User> = new Subject<User>();
+
   url = 'http://localhost:57182/api/login';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private alertService: AlertService) {
 
    }
 
@@ -53,7 +57,16 @@ export class LoginService {
     localStorage.removeItem('token');
   }
 
-  loginWithToken = async () => {
+  setCurrentUser(user: User) {
+    this.userLoggedIn.next(user);
+  }
+
+  getCurrentUser(): Observable<any> {
+    return this.userLoggedIn.asObservable();
+  }
+
+  clearCurrentUser(): void {
+    this.userLoggedIn.next();
   }
 
   isLoggedIn(): boolean {

@@ -1,3 +1,4 @@
+import { AlertService, Alert } from './../../services/alert.service';
 import { LoginService } from './../../services/login.service';
 import { RegistrationValidators } from './../../Validators/Registration.validator';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -68,7 +69,9 @@ export class LoginDialogComponent {
 
   constructor(
     public dialogRef: MatDialogRef<LoginDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData, private loginService: LoginService) {
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    private loginService: LoginService,
+    private alertService: AlertService) {
 
     }
 
@@ -87,7 +90,13 @@ export class LoginDialogComponent {
       validTry = await this.loginService.loginUser(this.signInForm.value.userName, this.signInForm.value.password);
     }
     if (validTry) {
-      this.loggedIn.emit(validTry);
+      let success = false;
+      if (this.loginService.getCurrentUser() !== null) {
+        success = true;
+      }
+      const alert: Alert = new Alert();
+      alert.message = success ? 'Welcome!' : 'Login Failed';
+      this.alertService.subject.next(alert);
       this.dialogRef.close();
     }
   }

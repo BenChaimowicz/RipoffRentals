@@ -1,3 +1,4 @@
+import { ImageHelper } from './../../helpers/imageHelper';
 import { AlertService, Alert } from './../../services/alert.service';
 import { LoginService } from './../../services/login.service';
 import { RegistrationValidators } from './../../Validators/Registration.validator';
@@ -30,17 +31,29 @@ export class LoginComponent implements OnInit {
   userName: string;
   password: string;
 
+  currUserFullName: string;
+  currUserImage: string;
+
   constructor(public dialog: MatDialog, private loginService: LoginService) { }
 
   ngOnInit() {
+    this.loginService.userLoggedIn.subscribe(user => {
+      if (user !== null) {
+        this.loggedIn = true;
+      }
+      this.currUserFullName = user.fullName;
+      if (user.image !== null) {
+        this.currUserImage = ImageHelper.getSrcFromBase64(user.image);
+      } else { this.currUserImage = ''; }
+    });
   }
 
   openDialog() {
-// tslint:disable-next-line: no-use-before-declare
+    // tslint:disable-next-line: no-use-before-declare
     const dialogRef = this.dialog.open(LoginDialogComponent, {
       maxWidth: '300px',
       minHeight: '200px',
-      data: {userName: this.userName, password: this.password }
+      data: { userName: this.userName, password: this.password }
     });
   }
 
@@ -73,7 +86,7 @@ export class LoginDialogComponent {
     private loginService: LoginService,
     private alertService: AlertService) {
 
-    }
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -95,7 +108,7 @@ export class LoginDialogComponent {
         success = true;
       }
       const alert: Alert = new Alert();
-      alert.message = success ? 'Welcome!' : 'Login Failed';
+      alert.message = success ? `Welcome!` : 'Login Failed';
       this.alertService.subject.next(alert);
       this.dialogRef.close();
     }

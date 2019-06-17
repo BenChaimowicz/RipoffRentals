@@ -2,19 +2,23 @@ import { AlertService } from './alert.service';
 import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { async } from '@angular/core/testing';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { User } from '../Models/Users.class';
+import { UsersService } from './users.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  userLoggedIn: Subject<User> = new Subject<User>();
+  userLoggedIn: BehaviorSubject<User> = new BehaviorSubject<User>(null);
 
   url = 'http://localhost:57182/api/login';
 
-  constructor(private http: HttpClient, private alertService: AlertService) {
+  constructor(
+    private http: HttpClient,
+    private alertService: AlertService,
+    private userService: UsersService) {
 
    }
 
@@ -44,6 +48,7 @@ export class LoginService {
       const token = await this.getToken(username, password);
       if (token !== null) {
         this.saveToLocalStorage(token.FullName, token.Token);
+        this.setCurrentUser(token.Id);
         return true;
       }
     } catch (err) {
@@ -57,7 +62,8 @@ export class LoginService {
     localStorage.removeItem('token');
   }
 
-  setCurrentUser(user: User) {
+  async setCurrentUser(id: number) {
+    const user = await this.userService.getUser(id);
     this.userLoggedIn.next(user);
   }
 
@@ -66,7 +72,7 @@ export class LoginService {
   }
 
   clearCurrentUser(): void {
-    this.userLoggedIn.next();
+    this.userLoggedIn.next(null);
   }
 
   isLoggedIn(): boolean {
@@ -76,4 +82,5 @@ export class LoginService {
     }
     return false;
   }
+
 }

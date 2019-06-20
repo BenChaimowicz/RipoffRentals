@@ -34,18 +34,20 @@ export class LoginComponent implements OnInit {
   currUserFullName: string;
   currUserImage: string;
 
-  constructor(public dialog: MatDialog, private loginService: LoginService) { }
+  constructor(public dialog: MatDialog, private loginService: LoginService, private alertService: AlertService) { }
 
   ngOnInit() {
     this.loginService.userLoggedIn.subscribe(user => {
+      console.log(user);
       if (user !== null) {
+        this.currUserFullName = user.FullName;
+        console.log(this.currUserFullName);
+        if (user.Image !== null) {
+          this.currUserImage = ImageHelper.getSrcFromBase64(user.Image);
+        } else { this.currUserImage = '../../../assets/userpic.png'; }
         this.loggedIn = true;
       }
-      this.currUserFullName = user.fullName;
-      if (user.image !== null) {
-        this.currUserImage = ImageHelper.getSrcFromBase64(user.image);
-      } else { this.currUserImage = ''; }
-    });
+    }, error => { console.warn('No user is logged in!'); });
   }
 
   openDialog() {
@@ -104,7 +106,7 @@ export class LoginDialogComponent {
     }
     if (validTry) {
       let success = false;
-      if (this.loginService.getCurrentUser() !== null) {
+      if (await this.loginService.getCurrentUser() !== null) {
         success = true;
       }
       const alert: Alert = new Alert();

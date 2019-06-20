@@ -11,7 +11,7 @@ export class UsersService {
 
   constructor(private http: HttpClient) { }
 
-  getUser(id: number): Promise<User> {
+  getUser(id: number): Promise<any> {
     return this.http.get<User>(this.url + '/' + id).toPromise()
       .catch(err => console.error(err)).then();
   }

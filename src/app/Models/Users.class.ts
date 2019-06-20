@@ -2,22 +2,22 @@ import { Rental } from './Rental.class';
 
 export class User {
   uid: number;
-  fullName: string;
-  idNumber: string;
-  userName: string;
-  dateOfBirth?: Date;
-  gender: Gender;
-  eMail: string;
-  image?: string;
-  rentals?: Rental[];
-  permissions: Permissions;
+  FullName: string;
+  IDNumber: string;
+  UserName: string;
+  DateOfBirth?: Date;
+  Gender: Gender;
+  EMail: string;
+  Image?: string;
+  Rentals?: Rental[];
+  Permissions: Permissions;
 
   constructor(fullname: string, idnum: string, username: string, gender: Gender, email: string) {
-    this.fullName = fullname;
-    this.idNumber = idnum;
-    this.userName = username;
-    this.gender = gender;
-    this.eMail = email;
+    this.FullName = fullname;
+    this.IDNumber = idnum;
+    this.UserName = username;
+    this.Gender = gender;
+    this.EMail = email;
   }
 }
 

@@ -12,6 +12,7 @@ import { UsersService } from './users.service';
 export class LoginService {
 
   userLoggedIn: BehaviorSubject<User> = new BehaviorSubject<User>(null);
+  currStorage: any;
 
   url = 'http://localhost:57182/api/login';
 
@@ -19,8 +20,11 @@ export class LoginService {
     private http: HttpClient,
     private alertService: AlertService,
     private userService: UsersService) {
-
-   }
+    this.currStorage = this.getFromLocalStorage();
+    if (this.currStorage !== null) {
+      this.setCurrentUser(parseInt(this.currStorage.userid, 10));
+    }
+  }
 
   private getToken(Email: string, Password: string): Promise<any> {
     if (Email === '' || Password === '' || Email == null || Password == null) {
@@ -30,14 +34,16 @@ export class LoginService {
     return this.http.post<string>(this.url, body).toPromise();
   }
 
-  private saveToLocalStorage(username: string, token: string) {
+  private saveToLocalStorage(username: string, userid: number, token: string) {
     localStorage.setItem('username', username);
+    localStorage.setItem('userid', userid.toString());
     localStorage.setItem('token', token);
   }
 
   private getFromLocalStorage() {
     const authToken = {
       username: localStorage.getItem('username'),
+      userid: localStorage.getItem('userid'),
       token: localStorage.getItem('token')
     };
     return authToken;
@@ -47,8 +53,8 @@ export class LoginService {
     try {
       const token = await this.getToken(username, password);
       if (token !== null) {
-        this.saveToLocalStorage(token.FullName, token.Token);
-        this.setCurrentUser(token.Id);
+        this.saveToLocalStorage(token.FullName, token.Id , token.Token);
+        await this.setCurrentUser(token.Id);
         return true;
       }
     } catch (err) {
@@ -60,6 +66,8 @@ export class LoginService {
   logOut() {
     localStorage.removeItem('username');
     localStorage.removeItem('token');
+    localStorage.removeItem('userid');
+    this.clearCurrentUser();
   }
 
   async setCurrentUser(id: number) {
@@ -76,11 +84,15 @@ export class LoginService {
   }
 
   isLoggedIn(): boolean {
-    const token = this.getFromLocalStorage();
-    if (token !== null || token !== undefined) {
-      return true;
+    try {
+      const token = this.getFromLocalStorage();
+      if (token !== null || token !== undefined) {
+        return true;
+      }
+      return false;
+    } catch (err) {
+      console.warn(err);
     }
-    return false;
   }
 
 }

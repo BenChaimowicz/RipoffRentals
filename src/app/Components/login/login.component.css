@@ -12,3 +12,7 @@ input {
 .visiBtn {
   justify-self: right;
 }
+
+img {
+  width: 10%;
+}

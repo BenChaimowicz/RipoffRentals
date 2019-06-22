@@ -13,5 +13,5 @@
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-raised-button matDialogClose color="primary">Cancel</button>
-  <button mat-raised-button color="primary" (click)="onSignIn()">Sign In</button>
+  <button mat-raised-button color="primary" (click)="onSignIn()" (keyup.enter)="onSignIn()">Sign In</button>
 </mat-dialog-actions>

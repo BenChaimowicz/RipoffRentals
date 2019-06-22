@@ -21,7 +21,7 @@ export class LoginService {
     private alertService: AlertService,
     private userService: UsersService) {
     this.currStorage = this.getFromLocalStorage();
-    if (this.currStorage !== null) {
+    if (this.currStorage !== null || this.currStorage !== undefined) {
       this.setCurrentUser(parseInt(this.currStorage.userid, 10));
     }
   }

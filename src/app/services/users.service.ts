@@ -12,6 +12,9 @@ export class UsersService {
   constructor(private http: HttpClient) { }
 
   getUser(id: number): Promise<any> {
+    if (isNaN(id) || id === undefined) {
+      return null;
+    }
     return this.http.get<User>(this.url + '/' + id).toPromise()
       .catch(err => console.error(err)).then();
   }

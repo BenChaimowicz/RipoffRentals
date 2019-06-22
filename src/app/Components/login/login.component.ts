@@ -13,6 +13,7 @@ import {
   MatFormField,
   MatFormFieldControl
 } from '@angular/material';
+import { isNull } from 'util';
 
 export interface DialogData {
   userName: string;
@@ -38,9 +39,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginService.userLoggedIn.subscribe(user => {
-      console.log(user);
-      if (user !== null) {
+      if (!isNull(user) && user !== null && user !== undefined) {
         this.currUserFullName = user.FullName;
+        console.log(user);
         console.log(this.currUserFullName);
         if (user.Image !== null) {
           this.currUserImage = ImageHelper.getSrcFromBase64(user.Image);

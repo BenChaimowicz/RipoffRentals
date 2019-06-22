@@ -1,3 +1,4 @@
+import { OrderPageComponent } from './Components/order-page/order-page.component';
 import { AuthGuard } from './services/auth.guard';
 import { AdminpageComponent } from './Components/adminpage/adminpage.component';
 import { ContactPageComponent } from './Components/contact-page/contact-page.component';
@@ -12,9 +13,10 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'customer', component: CustomerPageComponent },
+  { path: 'order', component: OrderPageComponent, canActivate: [AuthGuard] },
   { path: 'contact', component: ContactPageComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'admin', component: AdminpageComponent, canActivate: [RoleGuard], data: {expectedRole: 'Admin'} },
+  { path: 'admin', component: AdminpageComponent, canActivate: [RoleGuard], data: { expectedRole: 'Admin' } },
 
 ];
 

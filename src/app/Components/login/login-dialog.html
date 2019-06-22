@@ -3,10 +3,10 @@
 <mat-dialog-content>
   <form [formGroup]="signInForm">
   <mat-form-field color="accent">
-    <input matInput formControlName="userName" type="text" placeholder="User Name">
+    <input matInput formControlName="userName" type="text" placeholder="User Name" (keyup.enter)="onSignIn()">
   </mat-form-field>
   <mat-form-field color="accent">
-    <input matInput formControlName="password" [type]="isMasked ? 'password' : 'text'" placeholder="Password">
+    <input matInput formControlName="password" [type]="isMasked ? 'password' : 'text'" placeholder="Password" (keyup.enter)="onSignIn()">
   </mat-form-field>
   <button mat-button class="visiBtn" (click)="changeIcon()"><mat-icon>{{icon}}</mat-icon></button>
 </form>

@@ -1,13 +1,13 @@
 import { Branch } from './Branch.class';
 
 export class CarType {
-  index: number;
-  manufacturer: string;
-  model: string;
-  modelYear: string;
-  dailyCost: number;
-  dailyLateCost: number;
-  transmission: string;
+  Index: number;
+  Manufacturer: string;
+  Model: string;
+  ModelYear: string;
+  DailyCost: number;
+  DailyLateCost: number;
+  Transmission: string;
 
   constructor(
     i: number,
@@ -18,13 +18,13 @@ export class CarType {
     latecost: number,
     transmission: string
   ) {
-    this.index = i;
-    this.manufacturer = manu;
-    this.model = mod;
-    this.modelYear = modyear;
-    this.dailyCost = dcost;
-    this.dailyLateCost = latecost;
-    this.transmission = transmission;
+    this.Index = i;
+    this.Manufacturer = manu;
+    this.Model = mod;
+    this.ModelYear = modyear;
+    this.DailyCost = dcost;
+    this.DailyLateCost = latecost;
+    this.Transmission = transmission;
   }
 }
 

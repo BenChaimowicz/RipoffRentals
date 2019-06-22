@@ -1,0 +1,8 @@
+.inlineDiv {
+  display: flex;
+  align-items: center;
+}
+
+.inlineDiv > h4 {
+  width: 20%;
+}

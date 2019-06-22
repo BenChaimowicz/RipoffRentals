@@ -23,6 +23,7 @@ import { CustomerPageComponent } from './Components/customer-page/customer-page.
 import { ContactPageComponent } from './Components/contact-page/contact-page.component';
 import { LoginComponent, LoginDialogComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
+import { OrderPageComponent } from './Components/order-page/order-page.component';
 
 import { PasswordfilterPipe } from './passwordfilter.pipe';
 import { AdminpageComponent } from './Components/adminpage/adminpage.component';
@@ -40,6 +41,7 @@ import { JwtInterceptor } from './services/interceptor.service';
     PasswordfilterPipe,
     RegisterComponent,
     AdminpageComponent,
+    OrderPageComponent,
   ],
   imports: [
     BrowserModule,

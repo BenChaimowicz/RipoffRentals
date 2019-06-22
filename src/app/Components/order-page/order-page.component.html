@@ -1,0 +1,22 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Order Car Rental</mat-card-title>
+        <mat-card-subtitle>{{currCar.type.Manufacturer}} {{currCar.type.Model}}</mat-card-subtitle>
+    </mat-card-header>
+    <img matCardImage [src]="currCar.image">
+    <mat-card-content>
+      <div class="inlineDiv">
+        <h4>Transmission:</h4> {{currCar.type.Transmission}}
+      </div>
+      <div class="inlineDiv">
+        <h4>Daily Cost:</h4> {{currCar.type.DailyCost}} ILS
+      </div>
+      <div class="inlineDiv">
+        <h4>Per day late Cost:</h4> {{currCar.type.DailyLateCost}} ILS
+      </div>
+    </mat-card-content>
+    <mat-card-actions align="start">
+        <button mat-button >Place Order</button>
+
+    </mat-card-actions>
+</mat-card>

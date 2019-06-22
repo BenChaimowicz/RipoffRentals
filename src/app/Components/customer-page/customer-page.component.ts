@@ -1,3 +1,4 @@
+import { RoutingService } from './../../services/routing.service';
 import { CarsService } from './../../services/cars.service';
 import { Car } from './../../Models/Cars.class';
 import { Component, OnInit, HostBinding } from '@angular/core';
@@ -36,7 +37,7 @@ export class CustomerPageComponent implements OnInit {
   expandedCar: Car | null;
   isLoading = true;
 
-  constructor(private carService: CarsService) { }
+  constructor(private carService: CarsService, private routing: RoutingService) { }
 
   ngOnInit() {
     this.isLoading = true;
@@ -53,16 +54,10 @@ export class CustomerPageComponent implements OnInit {
     this.dataSource = new MatTableDataSource<Car>(this.carData);
     console.log(this.dataSource);
     this.isLoading = false;
+  }
 
-    // this.carService.getCars().subscribe((data: Car[]) => {
-    //   this.isLoading = true;
-    //   this.carData = data;
-    // }, (error: Error) => {
-    //     console.log(error.message);
-    //   }, () => {
-    //     this.dataSource = new MatTableDataSource<Car>(this.carData);
-    //     console.log(this.dataSource);
-    //     this.isLoading = false;
-    // });
+  onOrder(car: Car) {
+    this.carService.setCurrentCar(car);
+    this.routing.setRoute('/order');
   }
 }

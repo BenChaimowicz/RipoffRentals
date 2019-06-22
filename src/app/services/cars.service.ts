@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Car, CarType } from '../Models/Cars.class';
@@ -11,14 +11,25 @@ import { ImageHelper } from '../helpers/imageHelper';
 })
 export class CarsService {
 
+  private cars: Car[] = [];
   carUrl = 'http://localhost:57182/api/cars';
   typeUrl = 'http://localhost:57182/api/cartypes';
 
-  constructor(private http: HttpClient, private branchService: BranchService) { }
+  currCar: BehaviorSubject<Car> = new BehaviorSubject<Car>(null);
 
-  private cars: Car[] = [];
+  constructor(private http: HttpClient, private branchService: BranchService) {
 
-  async getCars() {
+   }
+
+  setCurrentCar(car: Car) {
+    this.currCar.next(car);
+  }
+
+  getCurrentCar(): Observable<Car> {
+    return this.currCar.asObservable();
+  }
+
+  async getCars(): Promise<Car[]> {
     let branch: Branch;
     let cartype: CarType;
     let rawCars: RawCar[] = [];

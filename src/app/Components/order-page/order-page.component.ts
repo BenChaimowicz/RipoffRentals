@@ -1,3 +1,4 @@
+import { RoutingService } from 'src/app/services/routing.service';
 import { CarsService } from './../../services/cars.service';
 import { Car } from './../../Models/Cars.class';
 import { Component, OnInit, Input } from '@angular/core';
@@ -11,11 +12,12 @@ export class OrderPageComponent implements OnInit {
 
   currCar: Car;
 
-  constructor(private carService: CarsService) {
+  constructor(private carService: CarsService, private routing: RoutingService) {
     this.carService.getCurrentCar().subscribe(car => {
       if (car !== undefined && car !== null) {
         this.currCar = car;
-        console.log(car);
+      } else {
+        routing.setRoute('/home');
       }
     });
    }

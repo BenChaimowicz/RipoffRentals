@@ -29,19 +29,19 @@ export class CarsService {
     return this.currCar.asObservable();
   }
 
+  async getCarById(id: number): Promise<Car> {
+    const raw: RawCar = await this.http.get<RawCar>(this.carUrl + '/' + id).toPromise();
+    return await this.convertToCar(raw);
+  }
+
   async getCars(): Promise<Car[]> {
-    let branch: Branch;
-    let cartype: CarType;
     let rawCars: RawCar[] = [];
-    let image: string;
 
     try {
       rawCars = await this.getRawCars().toPromise();
       for (let rc of rawCars) {
-        branch = await this.branchService.getBranchById(rc.Branch).toPromise();
-        cartype = await this.getCarTypeByIndex(rc.CarTypeIndex).toPromise();
-        image = await ImageHelper.getSrcFromBase64(rc.Image);
-        this.cars.push(new Car(rc.Index, cartype, rc.Mileage, image, rc.Fit, rc.Available, rc.Platenumber, branch));
+        const car: Car = await this.convertToCar(rc);
+        this.cars.push(car);
       }
       return this.cars;
     } catch (err) {
@@ -58,6 +58,12 @@ export class CarsService {
     return this.http.get<CarType>(this.typeUrl + '/' + id);
   }
 
+  async convertToCar(raw: RawCar): Promise<Car> {
+    const branch = await this.branchService.getBranchById(raw.Branch).toPromise();
+    const carType = await this.getCarTypeByIndex(raw.CarTypeIndex).toPromise();
+    const image = await ImageHelper.getSrcFromBase64(raw.Image);
+    return new Car(raw.Index, carType, raw.Mileage, image, raw.Fit, raw.Available, raw.Platenumber, branch);
+  }
 }
 
 interface RawCar {

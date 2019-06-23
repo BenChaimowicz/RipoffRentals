@@ -16,8 +16,21 @@
         <h4>Per day late Cost:</h4> {{currCar.type.DailyLateCost}} ILS
       </div>
     </div>
-    <div class="sideBlock">
-
+    <div class="sideBlock" [formGroup]="orderForm">
+      <mat-form-field class="inlineDiv">
+        <input matInput [matDatepicker]="startDatePicker" placeholder="Requested Start Date" formControlName="startDate">
+        <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #startDatePicker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field class="inlineDiv">
+        <input matInput [matDatepicker]="endDatePicker" placeholder="Requested End Date" formControlName="endDate">
+        <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #endDatePicker></mat-datepicker>
+      </mat-form-field>
+      <div class="summary">
+        <h3>Total Cost:</h3>
+        <h3>Availability:</h3>
+      </div>
     </div>
   </mat-card-content>
   <mat-card-actions align="start">

@@ -1,3 +1,5 @@
+import { Rental } from './../../Models/Rental.class';
+import { FormGroup, FormControl } from '@angular/forms';
 import { RoutingService } from 'src/app/services/routing.service';
 import { CarsService } from './../../services/cars.service';
 import { Car } from './../../Models/Cars.class';
@@ -11,6 +13,11 @@ import { Component, OnInit, Input } from '@angular/core';
 export class OrderPageComponent implements OnInit {
 
   currCar: Car;
+  currRental: Rental;
+  orderForm: FormGroup = new FormGroup({
+    startDate: new FormControl(''),
+    endDate: new FormControl('')
+  });
 
   constructor(private carService: CarsService, private routing: RoutingService) {
     this.carService.getCurrentCar().subscribe(car => {

@@ -1,8 +1,18 @@
 .inlineDiv {
   display: flex;
   align-items: center;
+  justify-content: space-evenly;
 }
 
 .inlineDiv > h4 {
   width: 20%;
+}
+
+.mat-card-content {
+ display: flex;
+ flex-direction: row;
+}
+
+.sideBlock {
+  width: 50%;
 }

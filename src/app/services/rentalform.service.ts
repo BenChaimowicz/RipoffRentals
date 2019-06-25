@@ -14,7 +14,7 @@ export class RentalformService {
 
   constructor(private http: HttpClient, private carService: CarsService, private userService: UsersService) { }
 
-  getRawRentals(): Promise<RawRental[]> {
+  private getRawRentals(): Promise<RawRental[]> {
     return this.http.get<RawRental[]>(this.url).toPromise();
   }
 
@@ -26,7 +26,7 @@ export class RentalformService {
     }
   }
 
-  async convertToRental(raw: RawRental): Promise<Rental> {
+  private async convertToRental(raw: RawRental): Promise<Rental> {
     const rental: Rental = new Rental();
     rental.car = await this.carService.getCarById(raw.CarIndex);
     rental.user = await this.userService.getUser(raw.UserIndex);

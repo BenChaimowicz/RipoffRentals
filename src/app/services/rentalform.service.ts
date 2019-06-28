@@ -1,3 +1,4 @@
+import { Moment } from 'moment';
 import { UsersService } from './users.service';
 import { CarsService } from './cars.service';
 import { Observable } from 'rxjs';
@@ -44,10 +45,20 @@ export class RentalformService {
     return rental;
   }
 
+  createNewRental(sDate: Moment, eDate: Moment, carId: number, userId: number) {
+    const rental: RawRental = {
+      StartDate: sDate.toDate(),
+      EndDate: eDate.toDate(),
+      ReturnDate: null,
+      UserIndex: userId,
+      CarIndex: carId
+    };
+    return this.http.post(this.url, rental);
+  }
 }
 
 interface RawRental {
-  Index: number;
+  Index?: number;
   StartDate: Date;
   EndDate: Date;
   ReturnDate: Date;

@@ -18,6 +18,7 @@ import { OrderValidation } from 'src/app/Validators/Order.validator';
 export class OrderPageComponent implements OnInit {
 
   today: Date = new Date();
+  isAvailable: boolean;
 
   currCar: Car;
   currRental: Rental;
@@ -46,17 +47,22 @@ export class OrderPageComponent implements OnInit {
   ngOnInit() {
   }
 
-  checkIfAvailable() {
+  async checkIfAvailable() {
     const statusAlert: Alert = new Alert();
     statusAlert.isLoader = false;
 
     if (this.orderForm.valid) {
-      statusAlert.message = 'Checking...';
-      this.orderService.checkIfCarIsAvailable(this.currCar, this.orderForm.value.startDate, this.orderForm.value.endDate);
+      const sDate: Date = new Date(this.orderForm.value.startDate);
+      const eDate: Date = new Date(this.orderForm.value.endDate);
+      this.isAvailable = await this.orderService.checkIfCarIsAvailable(this.currCar, sDate, eDate);
+      statusAlert.message = this.isAvailable ? 'Dates are free!' : 'Dates are taken!';
     } else {
       statusAlert.message = 'Dates are invalid!';
     }
     this.alertService.subject.next(statusAlert);
   }
 
+  async confirmOrder() {
+
+  }
 }

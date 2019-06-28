@@ -79,6 +79,10 @@ export class LoginService {
     return this.userLoggedIn.asObservable();
   }
 
+  getCurrentUserId(): number {
+    return this.userLoggedIn.value.uid;
+  }
+
   clearCurrentUser(): void {
     this.userLoggedIn.next(null);
   }

@@ -47,14 +47,16 @@ export class OrderPageComponent implements OnInit {
   }
 
   checkIfAvailable() {
-    let statusAlert: Alert = new Alert();
+    const statusAlert: Alert = new Alert();
+    statusAlert.isLoader = false;
 
     if (this.orderForm.valid) {
-      statusAlert.isLoader = false;
       statusAlert.message = 'Checking...';
-      this.alertService.subject.next(statusAlert);
-
+      this.orderService.checkIfCarIsAvailable(this.currCar, this.orderForm.value.startDate, this.orderForm.value.endDate);
+    } else {
+      statusAlert.message = 'Dates are invalid!';
     }
+    this.alertService.subject.next(statusAlert);
   }
 
 }

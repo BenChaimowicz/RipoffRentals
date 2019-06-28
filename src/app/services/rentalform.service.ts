@@ -26,6 +26,13 @@ export class RentalformService {
     }
   }
 
+  async getRentalByCarId(carId: number): Promise<Rental> {
+    const allRaw: RawRental[] = await this.getRawRentals();
+    const rawRental: RawRental = allRaw.reverse().find(rent => rent.CarIndex === carId);
+    return await this.convertToRental(rawRental);
+  }
+
+
   private async convertToRental(raw: RawRental): Promise<Rental> {
     const rental: Rental = new Rental();
     rental.car = await this.carService.getCarById(raw.CarIndex);
@@ -36,6 +43,7 @@ export class RentalformService {
 
     return rental;
   }
+
 }
 
 interface RawRental {

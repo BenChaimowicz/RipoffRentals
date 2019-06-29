@@ -1,3 +1,4 @@
+import { LoginService } from 'src/app/services/login.service';
 import { Moment } from 'moment';
 import { UsersService } from './users.service';
 import { CarsService } from './cars.service';
@@ -5,6 +6,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Rental } from '../Models/Rental.class';
+import { User, Permissions } from '../Models/Users.class';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,11 @@ export class RentalformService {
 
   url = 'http://localhost:57182/api/rentals';
 
-  constructor(private http: HttpClient, private carService: CarsService, private userService: UsersService) { }
+  constructor(
+    private http: HttpClient,
+    private carService: CarsService,
+    private userService: UsersService,
+    private loginService: LoginService) { }
 
   private getRawRentals(): Promise<RawRental[]> {
     return this.http.get<RawRental[]>(this.url).toPromise();
@@ -35,9 +41,15 @@ export class RentalformService {
 
 
   private async convertToRental(raw: RawRental): Promise<Rental> {
+    const user: User = await this.loginService.getCurrentUser().toPromise();
+    const userId: number = user.uid;
     const rental: Rental = new Rental();
     rental.car = await this.carService.getCarById(raw.CarIndex);
-    rental.user = await this.userService.getUser(raw.UserIndex);
+    if (userId === raw.UserIndex || user.Permissions === Permissions.Admin) {
+      rental.user = await this.userService.getUser(raw.UserIndex);
+    } else {
+      rental.user.uid = raw.UserIndex;
+    }
     rental.startDate = raw.StartDate;
     rental.endDate = raw.EndDate;
     rental.returnDate = raw.ReturnDate;

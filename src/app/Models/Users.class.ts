@@ -12,7 +12,8 @@ export class User {
   Rentals?: Rental[];
   Permissions: Permissions;
 
-  constructor(fullname: string, idnum: string, username: string, gender: Gender, email: string) {
+  constructor();
+  constructor(fullname?: string, idnum?: string, username?: string, gender?: Gender, email?: string) {
     this.FullName = fullname;
     this.IDNumber = idnum;
     this.UserName = username;

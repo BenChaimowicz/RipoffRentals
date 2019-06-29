@@ -46,6 +46,7 @@ export class LoginService {
       userid: localStorage.getItem('userid'),
       token: localStorage.getItem('token')
     };
+    this.setCurrentUser(parseInt(authToken.userid, 10));
     return authToken;
   }
 

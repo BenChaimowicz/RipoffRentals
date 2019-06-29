@@ -55,7 +55,7 @@ export class OrderPageComponent implements OnInit {
       const sDate: Date = new Date(this.orderForm.value.startDate);
       const eDate: Date = new Date(this.orderForm.value.endDate);
       this.isAvailable = await this.orderService.checkIfCarIsAvailable(this.currCar, sDate, eDate);
-      statusAlert.message = this.isAvailable ? 'Dates are free!' : 'Dates are taken!';
+      statusAlert.message = this.isAvailable ? 'Dates are free!' : 'Dates are taken or car was not yet returned!';
     } else {
       statusAlert.message = 'Dates are invalid!';
     }

@@ -22,10 +22,16 @@ export class OrderService {
     const mStart: Moment = moment(start, 'DD/MM/YYYY', true);
     const mEnd: Moment = moment(end, 'DD/MM/YYYY', true);
 
-    if (car.fitForRental && car.available) {
+    if (car.fitForRental) {
       if (mStart.isAfter(rEnd) || (mStart.isBefore(rStart) && mEnd.isBefore(rStart))) {
         return true;
       }
+    } else if (!car.fitForRental && car.available && mStart.isAfter(now.add(7, 'd'))) {
+      if (mStart.isAfter(rEnd) || (mStart.isBefore(rStart) && mEnd.isBefore(rStart))) {
+        return true;
+      }
+    } else if (car.fitForRental && car.available) {
+      return true;
     }
     return false;
   }

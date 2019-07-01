@@ -26,17 +26,15 @@ img {
 }
 
 .userContainer {
-  display: block;
+  display: flex;
   max-width: 120px;
   float: left;
-  top: 2px;
   font-size: 12px;
+  justify-content: center;
+  align-items: center;
 }
 
 .userContainer > * {
   display: block;
-}
-
-.outBtn {
-  top: 10px;
+  margin: 5px;
 }

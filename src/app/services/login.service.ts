@@ -76,8 +76,8 @@ export class LoginService {
     this.userLoggedIn.next(user);
   }
 
-  getCurrentUser(): Observable<any> {
-    return this.userLoggedIn.asObservable();
+  getCurrentUser(): User {
+    return this.userLoggedIn.value;
   }
 
   getCurrentUserId(): number {

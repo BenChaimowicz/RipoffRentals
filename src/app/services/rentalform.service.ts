@@ -34,20 +34,22 @@ export class RentalformService {
   }
 
   async getRentalByCarId(carId: number): Promise<Rental> {
-    const allRaw: RawRental[] = await this.getRawRentals();
-    const rawRental: RawRental = allRaw.reverse().find(rent => rent.CarIndex === carId);
-    return await this.convertToRental(rawRental);
+    const allraw: RawRental[] = await this.getRawRentals();
+    const needed: RawRental = allraw.reverse().find(raw => raw.CarIndex === carId);
+    const rental: Rental = await this.convertToRental(needed);
+    return rental;
   }
 
 
   private async convertToRental(raw: RawRental): Promise<Rental> {
-    const user: User = await this.loginService.getCurrentUser().toPromise();
+    const user: User = await this.loginService.getCurrentUser();
     const userId: number = user.uid;
     const rental: Rental = new Rental();
     rental.car = await this.carService.getCarById(raw.CarIndex);
     if (userId === raw.UserIndex || user.Permissions === Permissions.Admin) {
       rental.user = await this.userService.getUser(raw.UserIndex);
     } else {
+      rental.user = new User();
       rental.user.uid = raw.UserIndex;
     }
     rental.startDate = raw.StartDate;

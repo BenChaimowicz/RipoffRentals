@@ -62,7 +62,8 @@ export class CarsService {
     const branch = await this.branchService.getBranchById(raw.Branch).toPromise();
     const carType = await this.getCarTypeByIndex(raw.CarTypeIndex).toPromise();
     const image = await ImageHelper.getSrcFromBase64(raw.Image);
-    return new Car(raw.Index, carType, raw.Mileage, image, raw.Fit, raw.Available, raw.Platenumber, branch);
+    const car: Car = new Car(raw.Index, carType, raw.Mileage, image, raw.FitForRental, raw.Available, raw.PlateNumber, branch);
+    return car;
   }
 }
 
@@ -71,8 +72,8 @@ interface RawCar {
   CarTypeIndex: number;
   Mileage: number;
   Image: string;
-  Fit: boolean;
+  FitForRental: boolean;
   Available: boolean;
-  Platenumber: string;
+  PlateNumber: string;
   Branch: number;
 }

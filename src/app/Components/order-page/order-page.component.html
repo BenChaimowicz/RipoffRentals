@@ -35,6 +35,6 @@
   </mat-card-content>
   <mat-card-actions align="end">
     <button mat-button class="mat-elevation-z10" color="accent" (click)="checkIfAvailable()">Check Availability</button>
-    <button mat-button class="mat-elevation-z10" color="accent" (click)="confirmOrder()" *ngIf="isAvailable">Confirm Order</button>
+    <button mat-button class="mat-elevation-z10" color="accent" (click)="confirmOrder()" [disabled]="!isAvailable">Confirm Order</button>
   </mat-card-actions>
 </mat-card>

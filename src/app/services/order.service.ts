@@ -1,3 +1,4 @@
+import { Rental } from './../Models/Rental.class';
 import { RentalformService } from './rentalform.service';
 import { CarsService } from './cars.service';
 import { Injectable } from '@angular/core';
@@ -16,7 +17,7 @@ export class OrderService {
 
   async checkIfCarIsAvailable(car: Car, start: Date, end: Date): Promise<boolean> {
     const now: Moment = moment(Date(), 'DD/MM/YYYY', true);
-    const rental = await this.rentalService.getRentalByCarId(car.index);
+    const rental: Rental = await this.rentalService.getRentalByCarId(car.index);
     const rStart: Moment = moment(new Date(rental.startDate), 'DD/MM/YYYY', true);
     const rEnd: Moment = moment(new Date(rental.endDate), 'DD/MM/YYYY', true);
     const mStart: Moment = moment(start, 'DD/MM/YYYY', true);

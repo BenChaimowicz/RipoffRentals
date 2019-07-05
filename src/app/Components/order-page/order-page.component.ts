@@ -9,6 +9,7 @@ import { Car } from './../../Models/Cars.class';
 import { Component, OnInit, Input } from '@angular/core';
 import { DateAdapter } from '@angular/material';
 import { OrderValidation } from 'src/app/Validators/Order.validator';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-order-page',
@@ -19,6 +20,7 @@ export class OrderPageComponent implements OnInit {
 
   today: Date = new Date();
   isAvailable: boolean;
+  rentPrice = 0;
 
   currCar: Car;
   currRental: Rental;
@@ -54,9 +56,13 @@ export class OrderPageComponent implements OnInit {
     if (this.orderForm.valid) {
       const sDate: Date = new Date(this.orderForm.value.startDate);
       const eDate: Date = new Date(this.orderForm.value.endDate);
+      const diff = moment(eDate, 'DD/MM/YYYY').diff(moment(sDate, 'DD/MM/YYYY'), 'days');
+      this.rentPrice = (diff + 1) * this.currCar.type.DailyCost;
       this.isAvailable = await this.orderService.checkIfCarIsAvailable(this.currCar, sDate, eDate);
       statusAlert.message = this.isAvailable ? 'Dates are free!' : 'Dates are taken or car was not yet returned!';
     } else {
+      this.rentPrice = 0;
+      this.isAvailable = false;
       statusAlert.message = 'Dates are invalid!';
     }
     this.alertService.subject.next(statusAlert);

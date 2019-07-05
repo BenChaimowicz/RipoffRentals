@@ -8,6 +8,11 @@
   width: 20%;
 }
 
+.inlineDiv > img {
+  max-width: 50px;
+  max-height: 50px;
+}
+
 .mat-card-content {
  display: flex;
  flex-direction: row;

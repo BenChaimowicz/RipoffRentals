@@ -18,23 +18,35 @@
     </div>
     <div class="sideBlock" [formGroup]="orderForm">
       <mat-form-field class="inlineDiv">
-        <input matInput [matDatepicker]="startDatePicker" placeholder="Requested Start Date" [min]="today" formControlName="startDate" >
+        <input matInput [matDatepicker]="startDatePicker" placeholder="Requested Start Date" [min]="today"
+          formControlName="startDate">
         <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
         <mat-datepicker #startDatePicker></mat-datepicker>
       </mat-form-field>
       <mat-form-field class="inlineDiv">
-        <input matInput [matDatepicker]="endDatePicker" placeholder="Requested End Date" [min]="today" formControlName="endDate" >
+        <input matInput [matDatepicker]="endDatePicker" placeholder="Requested End Date" [min]="today"
+          formControlName="endDate">
         <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
         <mat-datepicker #endDatePicker></mat-datepicker>
       </mat-form-field>
       <div class="summary mat-elevation-z8">
-        <h3>Total Cost:</h3>
-        <h3>Availability:</h3>
+        <div class="inlineDiv">
+          <h3>Total Cost:</h3>
+          <img *ngIf="rentPrice === 0" src="../../../assets/loader.gif" alt="">
+          <span *ngIf="rentPrice > 0">&nbsp; {{rentPrice}} ILS </span>
+        </div>
+        <div class="inlineDiv">
+          <h3>Availability:</h3>
+          <img *ngIf="isAvailable == undefined" src="../../../assets/loader.gif" alt="">
+          <img *ngIf="isAvailable" src="../../../assets/yes.png" alt="">
+          <img *ngIf="isAvailable === false" src="../../../assets/no.png" alt="">
+        </div>
       </div>
     </div>
   </mat-card-content>
   <mat-card-actions align="end">
     <button mat-button class="mat-elevation-z10" color="accent" (click)="checkIfAvailable()">Check Availability</button>
-    <button mat-button class="mat-elevation-z10" color="accent" (click)="confirmOrder()" [disabled]="!isAvailable">Confirm Order</button>
+    <button mat-button class="mat-elevation-z10" color="accent" (click)="confirmOrder()"
+      [disabled]="!isAvailable">Confirm Order</button>
   </mat-card-actions>
 </mat-card>
